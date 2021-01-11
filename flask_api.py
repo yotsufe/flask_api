@@ -11,17 +11,27 @@ def return_result():
 result = {'title': 'pythonTEST', 'result': 200}
 
 
+@app.route('/user', methods=['GET', 'POST'])
+def return_user():
+    return jsonify(user_json)
+
+
+user_json = {'id': 1, 'name': "Michel", "password": "asdf"}
+
+
 @app.route('/users', methods=['GET', 'POST'])
 def return_users():
     return jsonify(users_json)
 
 
-users_json = [
-    {'id': 1, 'name': "Michel", "password": "asdf"},
-    {'id': 2, 'name': "Bob",    "password": "qwer"},
-    {'id': 3, 'name': "Jack",   "password": "zxcv"},
-]
+users_json = {
+    "users": [
+        {'id': 1, 'name': "Michel", "password": "asdf"},
+        {'id': 2, 'name': "Bob",    "password": "qwer"},
+        {'id': 3, 'name': "Jack",   "password": "zxcv"}
+    ]
+}
 
 
 if __name__ == "__main__":
-    app.run(port=8081, debug=True)
+    app.run(host='0.0.0.0', port=8081, debug=True)
